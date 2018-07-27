@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+    <title>GESTÃO DE ESTOQUE</title>
+
+    <style type="text/css">
+        <!--
+        .style1 {
+            color: #FF0000;
+            font-size: x-small;
+        }
+        .style3 {color: #0000FF; font-size: x-small; }
+        -->
+    </style>
+
+    <script type="text/javascript">
+        function validaCampo()
+        {
+            if(document.index.id_produto.value=="")
+            {
+                alert("O Campo Código do produto é obrigatório!");
+                return false;
+            }
+            else
+            if(document.index.tx_produto.value=="")
+            {
+                alert("O Campo Produto é obrigatório!");
+                return false;
+            }
+            else
+            if(document.index.id_tipo.value=="")
+            {
+                alert("O Campo Tipo de Produto é obrigatório!");
+                return false;
+            }
+            else
+            if(document.index.nf_valor_compra.value=="")
+            {
+                alert("O Campo valor de compra é obrigatório!");
+                return false;
+            }
+            else
+            if(document.index.nf_valor_venda.value=="")
+            {
+                alert("O Campo valor de venda é obrigatório!");
+                return false;
+            }
+            else
+                return true;
+        }
+        <!-- Fim do JavaScript que validará os campos obrigatórios! -->
+    </script>
+    <?php
+
+include ("../../class/produtoSql.php");
+
+
+$produtoSql = new produtoSql();
+
+
+$insert = $produtoSql ->Insert($produto);
+
+    ?>
+</head>
+<body>
+
+<form id="produto" name="produtosql" method="post" action="produto.php" onsubmit="return validaCampo(); return false;">
+    <table width="625" border="0">
+        <tr>
+            <td width="69">Codigo do Produto:</td>
+            <td><input name="id_produto" type="text" id="id_produto"  />
+                <span class="style1">*</span></td>
+        </tr>
+        <tr>
+            <td width="69">Produto:</td>
+            <td width="546"><input name="tx_produto" type="text" id="tx_produto" size="70" maxlength="60" />
+                <span class="style1">*</span></td>
+        </tr>
+        <tr>
+            <td>Tipo de Produto:</td>
+            <td><select name="id_tipo" id="id_tipo">
+                <option>Selecione...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+                <span class="style4"> 1 - Limpeza / 2 - Higiene Pessoal </span></td>
+        </tr>
+
+        <tr>
+            <td>Valor de Compra:</td>
+                <td><input name="nf_valor_compra" type="text" id="nf_valor_compra" />
+                <span class="style3">Apenas Valores</span> </td>
+        </tr>
+        <tr>
+            <td>Valor de Venda:</td>
+            <td><input name="nf_valor_venda" type="text" id="nf_valor_venda" />
+                <span class="style3">Apenas Valores</span> </td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>
+                <input name="cadastrar" type="submit" id="cadastrar" value="Cadastrar!" />
+                <br />
+                <input name="limpar" type="reset" id="limpar" value="Limpar Dados!" />
+                <br />
+                <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios!          </span></p>
+                <p>&nbsp; </p></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
